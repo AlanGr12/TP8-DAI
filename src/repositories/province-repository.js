@@ -4,6 +4,67 @@ import LogHelper from '../helpers/log-helper.js';
 
 export default class ProvinceRepository {
 
+    getAllAsync = async () => {
+
+        let returnArray = [];
+
+        const client = new Client(DBConfig);
+
+        try {
+
+            await client.connect();
+
+            const sql = 'SELECT * FROM provinces';
+
+            const result = await client.query(sql);
+
+            returnArray = result.rows;
+
+        } catch (error) {
+
+            LogHelper.logError(error);
+
+        } finally {
+
+            await client.end();
+        }
+
+        return returnArray;
+    }
+
+    getByIdAsync = async (id) => {
+
+        let returnEntity = null;
+
+        const client = new Client(DBConfig);
+
+        try {
+
+            await client.connect();
+
+            const sql = 'SELECT * FROM provinces WHERE id = $1';
+
+            const values = [id];
+
+            const result = await client.query(sql, values);
+
+            if (result.rows.length > 0) {
+
+                returnEntity = result.rows[0];
+            }
+
+        } catch (error) {
+
+            LogHelper.logError(error);
+
+        } finally {
+
+            await client.end();
+        }
+
+        return returnEntity;
+    }
+
     createAsync = async (province) => {
 
         const client = new Client(DBConfig);
@@ -33,6 +94,7 @@ export default class ProvinceRepository {
         } catch (error) {
 
             LogHelper.logError(error);
+
             return false;
 
         } finally {
@@ -76,6 +138,7 @@ export default class ProvinceRepository {
         } catch (error) {
 
             LogHelper.logError(error);
+
             return false;
 
         } finally {
@@ -103,6 +166,7 @@ export default class ProvinceRepository {
         } catch (error) {
 
             LogHelper.logError(error);
+
             return false;
 
         } finally {
