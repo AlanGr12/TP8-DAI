@@ -70,4 +70,4 @@ router.delete('/:id', async (req, res) => {
     res.status(StatusCodes.OK).send('Provincia eliminada');
 });
 
-export default router;
+export default router; 
