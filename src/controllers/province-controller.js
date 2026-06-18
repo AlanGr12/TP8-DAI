@@ -32,10 +32,18 @@ router.post('/', async (req, res) => {
     const resultado = await service.createAsync(province);
 
     if (typeof resultado === 'string') {
-        return res.status(StatusCodes.BAD_REQUEST).send(resultado);
-    }
+    return res.status(StatusCodes.BAD_REQUEST).send(resultado);
+}
 
-    res.status(StatusCodes.CREATED).send('Provincia creada');
+if (resultado === true) {
+    return res.status(StatusCodes.CREATED).send('Provincia creada');
+}
+
+if (resultado === false) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error al crear la provincia');
+}
+  
+
 });
 
 router.put('/', async (req, res) => {
@@ -54,7 +62,14 @@ router.put('/', async (req, res) => {
         return res.status(StatusCodes.BAD_REQUEST).send(resultado);
     }
 
-    res.status(StatusCodes.CREATED).send('Provincia actualizada');
+    if (resultado === true) {
+        return res.status(StatusCodes.CREATED).send('Provincia actualizada');
+    }
+
+    if (resultado === false) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error al actualizar la provincia');
+    }
+    
 });
 
 router.delete('/:id', async (req, res) => {
