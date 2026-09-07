@@ -19,74 +19,137 @@
   "paths": {
     "/api/province/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Provincias"
+        ],
+        "summary": "Obtiene todas las provincias",
+        "description": "Devuelve el listado completo de provincias almacenadas en la base de datos.",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Listado de provincias obtenido correctamente",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Province"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       },
       "post": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "put": {
-        "description": "",
+        "tags": [
+          "Provincias"
+        ],
+        "summary": "Crea una nueva provincia",
+        "description": "Da de alta una provincia nueva. El id se genera automáticamente en la base de datos.",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Datos de la provincia a crear",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/ProvinceInput"
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Provincia creada correctamente"
+          },
+          "400": {
+            "description": "Datos inválidos (por ejemplo, falta el nombre o el full_name)"
+          },
+          "500": {
+            "description": "Error interno al intentar crear la provincia"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Provincias"
+        ],
+        "summary": "Actualiza una provincia existente",
+        "description": "Modifica los datos de una provincia ya existente. El id debe venir incluido en el body.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos de la provincia a actualizar, incluyendo su id",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Province"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Provincia actualizada correctamente"
+          },
+          "400": {
+            "description": "Datos inválidos"
+          },
+          "404": {
+            "description": "No existe una provincia con ese id"
+          },
+          "500": {
+            "description": "Error interno al intentar actualizar la provincia"
           }
         }
       }
     },
     "/api/province/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Provincias"
+        ],
+        "summary": "Obtiene una provincia por id",
+        "description": "Devuelve los datos de una provincia puntual a partir de su id.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "Id de la provincia"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Provincia encontrada",
+            "schema": {
+              "$ref": "#/definitions/Province"
+            }
+          },
+          "404": {
+            "description": "No existe una provincia con ese id"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Provincias"
+        ],
+        "summary": "Elimina una provincia",
+        "description": "Elimina la provincia cuyo id coincide con el parámetro recibido.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "Id de la provincia a eliminar"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Provincia eliminada correctamente"
+          },
+          "404": {
+            "description": "No existe una provincia con ese id"
           }
         }
       }
