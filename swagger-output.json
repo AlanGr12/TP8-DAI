@@ -1,0 +1,151 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de Provincias - TP8 DAI",
+    "description": "Documentación generada con Swagger para la API de provincias del TP8. Permite consultar, crear, actualizar y eliminar provincias.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Provincias",
+      "description": "Operaciones sobre el recurso Provincia"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/province/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/province/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Province": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Buenos Aires"
+        },
+        "full_name": {
+          "type": "string",
+          "example": "Provincia de Buenos Aires"
+        },
+        "latitude": {
+          "type": "number",
+          "example": -34.6
+        },
+        "longitude": {
+          "type": "number",
+          "example": -58.4
+        },
+        "display_order": {
+          "type": "number",
+          "example": 1
+        }
+      }
+    },
+    "ProvinceInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Buenos Aires"
+        },
+        "full_name": {
+          "type": "string",
+          "example": "Provincia de Buenos Aires"
+        },
+        "latitude": {
+          "type": "number",
+          "example": -34.6
+        },
+        "longitude": {
+          "type": "number",
+          "example": -58.4
+        },
+        "display_order": {
+          "type": "number",
+          "example": 1
+        }
+      }
+    }
+  }
+}
